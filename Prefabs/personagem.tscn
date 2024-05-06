@@ -1,7 +1,8 @@
-[gd_scene load_steps=42 format=3 uid="uid://n2i44aa5lql"]
+[gd_scene load_steps=43 format=3 uid="uid://n2i44aa5lql"]
 
 [ext_resource type="Script" path="res://Prefabs/personagem.gd" id="1_ie182"]
 [ext_resource type="Texture2D" uid="uid://t68fspi2qeq0" path="res://Assets/brackeys_platformer_assets/sprites/knight.png" id="2_cmiml"]
+[ext_resource type="AudioStream" uid="uid://clq44tsj2lw62" path="res://Assets/brackeys_platformer_assets/sounds/jump.wav" id="3_ubisg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8m8kk"]
 atlas = ExtResource("2_cmiml")
@@ -305,9 +306,12 @@ script = ExtResource("1_ie182")
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_n6hq4")
-animation = &"jump"
+animation = &"death"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_0pnak")
+
+[node name="Jump_Audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ubisg")

@@ -1,5 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://bqxrk80hq00hv"]
+[gd_scene load_steps=20 format=3 uid="uid://bqxrk80hq00hv"]
 
+[ext_resource type="Script" path="res://Prefabs/world.gd" id="1_2orcd"]
 [ext_resource type="PackedScene" uid="uid://n2i44aa5lql" path="res://Prefabs/personagem.tscn" id="1_2tube"]
 [ext_resource type="PackedScene" uid="uid://bxcqnykrpuysf" path="res://Prefabs/world_tile.tscn" id="2_82cun"]
 [ext_resource type="PackedScene" uid="uid://clie841c4w1ij" path="res://Prefabs/plataform.tscn" id="3_wmxcg"]
@@ -9,7 +10,21 @@
 [ext_resource type="FontFile" uid="uid://bvl3e52y3ewfc" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="7_55vrf"]
 [ext_resource type="Texture2D" uid="uid://cxv4p484h545p" path="res://Assets/brackeys_platformer_assets/sprites/coin.png" id="7_yri5n"]
 [ext_resource type="FontFile" uid="uid://bh3si0t0v47c1" path="res://Assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="9_yq2jk"]
-[ext_resource type="Texture2D" uid="uid://t68fspi2qeq0" path="res://Assets/brackeys_platformer_assets/sprites/knight.png" id="10_bgi0v"]
+
+[sub_resource type="Animation" id="Animation_fke01"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(380, 107)]
+}
 
 [sub_resource type="Animation" id="Animation_b323f"]
 resource_name = "top_path"
@@ -28,7 +43,16 @@ tracks/0/keys = {
 "values": [Vector2(380, 107), Vector2(380, 11)]
 }
 
-[sub_resource type="Animation" id="Animation_fke01"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rbdh1"]
+_data = {
+"RESET": SubResource("Animation_fke01"),
+"top_path": SubResource("Animation_b323f")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wflnc"]
+size = Vector2(877, 16)
+
+[sub_resource type="Animation" id="Animation_i8o6t"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -40,17 +64,8 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(380, 107)]
+"values": [Vector2(-22, 122)]
 }
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rbdh1"]
-_data = {
-"RESET": SubResource("Animation_fke01"),
-"top_path": SubResource("Animation_b323f")
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wflnc"]
-size = Vector2(877, 16)
 
 [sub_resource type="Animation" id="Animation_82dtc"]
 resource_name = "move"
@@ -69,21 +84,6 @@ tracks/0/keys = {
 "values": [Vector2(-22, 122), Vector2(-116, 122)]
 }
 
-[sub_resource type="Animation" id="Animation_i8o6t"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-22, 122)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qop7f"]
 _data = {
 "RESET": SubResource("Animation_i8o6t"),
@@ -94,164 +94,11 @@ _data = {
 atlas = ExtResource("7_yri5n")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="Animation" id="Animation_o45kw"]
-resource_name = "death"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../CanvasLayer/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.576471)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../CanvasLayer/Label:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../CanvasLayer/Label2:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../CanvasLayer/Sprite2D:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../CanvasLayer/Sprite2D:frame")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.7, 0.9, 1.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [56, 57, 58, 59]
-}
-
-[sub_resource type="Animation" id="Animation_cqdyr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../CanvasLayer/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../CanvasLayer/Label:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../CanvasLayer/Label2:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../CanvasLayer/Sprite2D:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../CanvasLayer/Sprite2D:frame")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [56]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_we7f6"]
-_data = {
-"RESET": SubResource("Animation_cqdyr"),
-"death": SubResource("Animation_o45kw")
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gkgd"]
+size = Vector2(204, 12)
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_2orcd")
 
 [node name="WorldTile" parent="." instance=ExtResource("2_82cun")]
 position = Vector2(43, 85)
@@ -263,10 +110,8 @@ position = Vector2(43, 85)
 collision_mask = 2
 label_coin = NodePath("../CanvasLayer/CenterContainer/HBoxContainer/Label")
 
-[node name="Camera" type="Camera2D" parent="Personagem"]
-limit_left = -1000
-limit_bottom = 150
-position_smoothing_enabled = true
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Personagem"]
+remote_path = NodePath("../../Camera")
 
 [node name="Plataform" parent="." instance=ExtResource("3_wmxcg")]
 position = Vector2(380, 107)
@@ -278,41 +123,60 @@ libraries = {
 autoplay = "top_path"
 
 [node name="Coins" type="Node2D" parent="."]
+unique_name_in_owner = true
 
-[node name="Pickup" parent="Coins" instance=ExtResource("4_u5s22")]
+[node name="Pickup" parent="Coins" groups=["coins"] instance=ExtResource("4_u5s22")]
 position = Vector2(163, 109)
 
-[node name="Pickup11" parent="Coins" instance=ExtResource("4_u5s22")]
+[node name="Pickup11" parent="Coins" groups=["coins"] instance=ExtResource("4_u5s22")]
 position = Vector2(-205, 95)
 
-[node name="Pickup12" parent="Coins" instance=ExtResource("4_u5s22")]
+[node name="Pickup12" parent="Coins" groups=["coins"] instance=ExtResource("4_u5s22")]
 position = Vector2(-332, 95)
 
-[node name="Pickup2" parent="Coins" instance=ExtResource("4_u5s22")]
+[node name="Pickup13" parent="Coins" groups=["coins"] instance=ExtResource("4_u5s22")]
+position = Vector2(-566, 93)
+
+[node name="Pickup14" parent="Coins" groups=["coins"] instance=ExtResource("4_u5s22")]
+position = Vector2(-566, 81)
+
+[node name="Pickup15" parent="Coins" groups=["coins"] instance=ExtResource("4_u5s22")]
+position = Vector2(-566, 69)
+
+[node name="Pickup16" parent="Coins" groups=["coins"] instance=ExtResource("4_u5s22")]
+position = Vector2(-553, 69)
+
+[node name="Pickup17" parent="Coins" groups=["coins"] instance=ExtResource("4_u5s22")]
+position = Vector2(-553, 81)
+
+[node name="Pickup18" parent="Coins" groups=["coins"] instance=ExtResource("4_u5s22")]
+position = Vector2(-553, 93)
+
+[node name="Pickup2" parent="Coins" groups=["coins"] instance=ExtResource("4_u5s22")]
 position = Vector2(323, 110)
 
-[node name="Pickup3" parent="Coins" instance=ExtResource("4_u5s22")]
+[node name="Pickup3" parent="Coins" groups=["coins"] instance=ExtResource("4_u5s22")]
 position = Vector2(-93, -18)
 
-[node name="Pickup4" parent="Coins" instance=ExtResource("4_u5s22")]
+[node name="Pickup4" parent="Coins" groups=["coins"] instance=ExtResource("4_u5s22")]
 position = Vector2(196, -17)
 
-[node name="Pickup5" parent="Coins" instance=ExtResource("4_u5s22")]
+[node name="Pickup5" parent="Coins" groups=["coins"] instance=ExtResource("4_u5s22")]
 position = Vector2(292, -33)
 
-[node name="Pickup6" parent="Coins" instance=ExtResource("4_u5s22")]
+[node name="Pickup6" parent="Coins" groups=["coins"] instance=ExtResource("4_u5s22")]
 position = Vector2(37, 2)
 
-[node name="Pickup7" parent="Coins" instance=ExtResource("4_u5s22")]
+[node name="Pickup7" parent="Coins" groups=["coins"] instance=ExtResource("4_u5s22")]
 position = Vector2(48, 2)
 
-[node name="Pickup8" parent="Coins" instance=ExtResource("4_u5s22")]
+[node name="Pickup8" parent="Coins" groups=["coins"] instance=ExtResource("4_u5s22")]
 position = Vector2(59, 2)
 
-[node name="Pickup9" parent="Coins" instance=ExtResource("4_u5s22")]
+[node name="Pickup9" parent="Coins" groups=["coins"] instance=ExtResource("4_u5s22")]
 position = Vector2(70, 2)
 
-[node name="Pickup10" parent="Coins" instance=ExtResource("4_u5s22")]
+[node name="Pickup10" parent="Coins" groups=["coins"] instance=ExtResource("4_u5s22")]
 position = Vector2(81, 2)
 
 [node name="Diezones" type="Node2D" parent="."]
@@ -347,12 +211,13 @@ position = Vector2(-301, 105)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0)
+color = Color(0, 0, 0, 0.596078)
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
 anchors_preset = 1
@@ -380,47 +245,47 @@ text = "0"
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 visible = false
-offset_left = 133.0
-offset_top = 26.0
-offset_right = 197.0
-offset_bottom = 49.0
+offset_left = 105.0
+offset_top = 36.0
+offset_right = 233.0
+offset_bottom = 59.0
 theme_override_fonts/font = ExtResource("9_yq2jk")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 16
 text = "You died!"
 
-[node name="Label2" type="Label" parent="CanvasLayer"]
+[node name="playagain" type="Button" parent="CanvasLayer"]
 visible = false
-offset_left = 95.0
-offset_top = 48.0
-offset_right = 236.0
-offset_bottom = 71.0
+offset_left = 93.0
+offset_top = 72.0
+offset_right = 245.0
+offset_bottom = 103.0
 theme_override_fonts/font = ExtResource("9_yq2jk")
 theme_override_font_sizes/font_size = 8
-text = "Press R to try again"
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
-visible = false
-position = Vector2(158, 84)
-scale = Vector2(2, 2)
-texture = ExtResource("10_bgi0v")
-hframes = 8
-vframes = 8
-frame = 56
+text = "Play again"
 
 [node name="Label" type="Label" parent="."]
-offset_left = -494.0
-offset_top = 71.0
-offset_right = -355.0
-offset_bottom = 94.0
+offset_left = -479.0
+offset_top = 72.0
+offset_right = -340.0
+offset_bottom = 95.0
 theme_override_fonts/font = ExtResource("9_yq2jk")
 theme_override_font_sizes/font_size = 8
 text = "Is there something?"
 
-[node name="DeathAnimation" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
-root_node = NodePath("../Personagem")
-libraries = {
-"": SubResource("AnimationLibrary_we7f6")
-}
+[node name="Ponte_invisivel" type="StaticBody2D" parent="."]
+position = Vector2(-469, 108)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ponte_invisivel"]
+shape = SubResource("RectangleShape2D_3gkgd")
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(43, 85)
+limit_left = -630
+limit_right = 500
+limit_bottom = 150
+position_smoothing_enabled = true
+editor_draw_limits = true
 
 [connection signal="body_entered" from="Diezones/Diezone" to="Personagem" method="_on_diezone_body_entered"]
+[connection signal="pressed" from="CanvasLayer/playagain" to="." method="_on_playagain_pressed"]
